@@ -15,6 +15,7 @@ hide_st_style = """
             header {visibility: hidden;}
             </style>
             """
+
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
 def single_choice_crosstab(df, q, column =None, value='weight', column_seq=None, row_seq=None):
@@ -91,21 +92,8 @@ def multi_choice_crosstab(df, q, column, value='weight', column_seq=None):
         result[demo] = temp
     result['Grand Total'] = gt
     return result
-
-def to_excel(df, demo, start):
-    output = BytesIO()
-    writer = pd.ExcelWriter(output, engine='xlsxwriter')
-    df.to_excel(writer, index=False, sheet_name=demo, startrow = start)
-    workbook = writer.book
-    worksheet = writer.sheets[demo]
-    # format1 = workbook.add_format({'num_format': '0.00'})
-    # worksheet.set_column('A:A', None, format1)
-    writer.save()
-    processed_data = output.getvalue()
-    return processed_data
     
-
-image = Image.open('/Users/amerwafiy/Desktop/cc-monitoring/invoke_logo.jpg')
+image = Image.open('invoke_logo.jpg')
 st.title('Crosstabs Generator')
 st.image(image)
 
@@ -158,8 +146,6 @@ if df:
                                         start = start + len(table) + 3
                                         workbook = writer.book
                                         worksheet = writer.sheets[demo]
-                                        # format1 = workbook.add_format({'num_format': '0.00'})
-                                        # worksheet.set_column('A:A', None, format1)
                             
                             writer.save()
                             df_xlsx = output.getvalue()
@@ -167,12 +153,3 @@ if df:
                             st.balloons()
                             st.header('Crosstabs ready for download!')
                             st.download_button(label='📥 Download', data=df_xlsx, file_name= df_name + '-crosstabs.xlsx')
-                                
-
-
-
-                    
-
-
-
-
