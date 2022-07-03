@@ -8,6 +8,15 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from colour import Color
 
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
 def single_choice_crosstab(df, q, column =None, value='weight', column_seq=None, row_seq=None):
     if row_seq != None:
         row_labels = row_seq + ["Grand Total"]
