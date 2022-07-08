@@ -93,7 +93,7 @@ def multi_choice_crosstab(df, q, column, value='weight', column_seq=None):
     result['Grand Total'] = gt
     return result
     
-image = Image.open('my-banner.png')
+image = Image.open('my-banner2.png')
 st.title('Crosstabs Generator')
 st.image(image)
 
